@@ -171,14 +171,14 @@ Token optimization requires a two-front strategy: **Input Compression** (filteri
 
 ### Token Compression & Optimization Tool Matrix
 
-| Feature / Metric | RTK (Rust Token Killer) | Headroom | Caveman Mode | Ponytail | SimpleEnglish | The Token Company (TTC) |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Optimization Target** | **Input** (CLI / Diff logs) | **Input** (Tool outputs / AST) | **Output** (Terse responses) | **Output** (Minimalist code) | **Output** (Simplified prose) | **Input** (Prompt payload) |
-| **Primary Mechanism** | Terminal output interceptor | AST pruning & local cache | System prompt injection | YAGNI decision ruleset | ASD-STE100 vocabulary | Neural model compression |
-| **Token Reduction** | **60% – 90%** (CLI outputs) | **60% – 95%** (Data/AST) | **60% – 75%** (Output tokens) | **~54%** (Generated code) | **15% – 30%** (Text output) | **40% – 66%** (Input prompt) |
-| **Reversibility** | Lossy (Strips noise) | **Reversible** (CCR cache) | N/A (Style constraint) | N/A (Code design) | N/A (Prose constraint) | Lossy / Semantic |
-| **Delivery Format** | Rust binary CLI proxy | Local proxy / MCP / SDK | Agent Skill / Ruleset | Agent Skill / `.cursorrules` | System prompt constraint | Cloud API Middleware / SDK |
-| **Best For** | `git diff`, test suite output | Codebase context & RAG | Daily terminal chat | Feature implementation | Docstrings & explanations | Heavy prompt middleware |
+| Feature / Metric | RTK (Rust Token Killer) | Headroom | WOZCODE | Caveman Mode | Ponytail | SimpleEnglish | The Token Company (TTC) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Optimization Target** | **Input** (CLI / Diff logs) | **Input** (Tool outputs / AST) | **Input / Tooling** (Claude Code AST) | **Output** (Terse responses) | **Output** (Minimalist code) | **Output** (Simplified prose) | **Input** (Prompt payload) |
+| **Primary Mechanism** | Terminal output interceptor | AST pruning & local cache | AST-aware tool substitution | System prompt injection | YAGNI decision ruleset | ASD-STE100 vocabulary | Neural model compression |
+| **Token Reduction** | **60% – 90%** (CLI outputs) | **60% – 95%** (Data/AST) | **25% – 55%** (Claude Code tokens) | **60% – 75%** (Output tokens) | **~54%** (Generated code) | **15% – 30%** (Text output) | **40% – 66%** (Input prompt) |
+| **Reversibility** | Lossy (Strips noise) | **Reversible** (CCR cache) | Lossless / Structural AST | N/A (Style constraint) | N/A (Code design) | N/A (Prose constraint) | Lossy / Semantic |
+| **Delivery Format** | Rust binary CLI proxy | Local proxy / MCP / SDK | Claude Code Plugin (`WithWoz`) | Agent Skill / Ruleset | Agent Skill / `.cursorrules` | System prompt constraint | Cloud API Middleware / SDK |
+| **Best For** | `git diff`, test suite output | Codebase context & RAG | Claude Code CLI sessions | Daily terminal chat | Feature implementation | Docstrings & explanations | Heavy prompt middleware |
 
 ---
 
@@ -186,6 +186,7 @@ Token optimization requires a two-front strategy: **Input Compression** (filteri
 
 * **[RTK (Rust Token Killer)](https://github.com/rtk-org/rtk)**: Blazing-fast Rust CLI proxy that intercepts shell outputs (`git diff`, `git status`, `cargo test`, `pytest`, `npm test`) before they reach the model. Strips non-essential headers, git advice strings, and passing test noise, cutting input tokens by up to 90% without breaking model context.
 * **[Headroom](https://github.com/headroomlabs-ai/headroom)** ([headroom.ai](https://headroom.ai)): Open-source agent context optimization layer. Uses AST-aware code compression (`CodeCompressor`), JSON object pruning (`SmartCrusher`), and neural log compression (`Kompress-base`). Features **Content-Centric Retrieval (CCR)**, allowing the LLM to dynamically fetch full uncompressed data via a `headroom_retrieve` tool call when needed.
+* **[WOZCODE](https://www.wozcode.com/)** ([GitHub](https://github.com/WithWoz/wozcode-plugin)): Efficiency-focused plugin for Claude Code CLI (`WithWoz/wozcode-plugin`). Operates locally to replace default terminal file inspection and codebase search tools with AST-aware, token-compact implementations (`woz:code`). Reduces token consumption by 25%–55% and speeds up terminal agent execution by eliminating redundant context reads.
 * **[The Token Company (TTC)](https://thetokencompany.com)** ([GitHub Python](https://github.com/the-token-company/the-token-company-python) | [GitHub Node](https://github.com/the-token-company/the-token-company-node)): Cloud middleware service utilizing specialized ultra-fast compression neural networks (`bear-1` / `bear-1.2`) to compress up to 100k input tokens in under 100ms with 40–66% payload reduction. Available via Python/Node SDKs and community plugins (e.g. `@drfok/opencode-ttc-plugin`).
 
 ---
@@ -212,8 +213,8 @@ Token optimization requires a two-front strategy: **Input Compression** (filteri
  ┌───────────────────────────────┐                                 ┌───────────────────────────────┐
  │ • RTK: CLI & Diff Filtering   │                                 │ • Caveman: No Conversational  │
  │ • Headroom: AST & CCR Caching │                                 │   Filler / Terse Responses    │
- │ • TTC: Neural Prompt Pruning  │                                 │ • Ponytail: YAGNI-First Code  │
- │                               │                                 │ • SimpleEnglish: ASD-STE100   │
+ │ • WOZCODE: Claude Code Plugin │                                 │ • Ponytail: YAGNI-First Code  │
+ │ • TTC: Neural Prompt Pruning  │                                 │ • SimpleEnglish: ASD-STE100   │
  └───────────────────────────────┘                                 └───────────────────────────────┘
 ```
 
@@ -225,8 +226,9 @@ For maximum cost efficiency during agentic CLI coding (e.g., Claude Code, OpenCo
 
 1. **CLI Proxy Layer**: Intercept commands with **RTK** to automatically strip `git diff` noise.
 2. **Context Layer**: Route repository inspection and file reads through **Headroom** for AST compression with CCR fallback.
-3. **Agent Persona**: Install **Caveman Mode** (`full` intensity) to eliminate conversational filler.
-4. **Code Generation Rules**: Enforce **Ponytail** via `.cursorrules` / `.clinerules` to prevent over-architected boilerplate.
+3. **Claude Code Plugin**: For Claude Code CLI sessions, install **WOZCODE** (`/plugin marketplace add WithWoz/wozcode-plugin`) to replace default file inspection with AST-aware handlers.
+4. **Agent Persona**: Install **Caveman Mode** (`full` intensity) to eliminate conversational filler.
+5. **Code Generation Rules**: Enforce **Ponytail** via `.cursorrules` / `.clinerules` to prevent over-architected boilerplate.
 
 ---
 
@@ -483,8 +485,12 @@ Optimizing spend requires leveraging legitimate provider discounts, startup gran
   * **[Microsoft for Startups Founders Hub](https://founders.startups.microsoft.com)**: Offers up to $150,000 in Azure credits covering Azure OpenAI Service (GPT-4o, Claude on Azure).
   * **[AWS Activate & Google Cloud for Startups](https://aws.amazon.com/activate/)**: $1,000 to $100,000 in cloud credits applicable to Bedrock (Claude 3.5, Llama 3) and Vertex AI (Gemini 1.5 Pro).
   * **GitHub & Open Source AI Grants**: Grants provided to active OSS maintainers via GitHub Sponsors, Hugging Face Community Grants, and AI research grants for public good repositories.
-* **Grey Market Safety & Security Warning**:
-  * **MITM Telemetry & Code Exposure**: Unauthorized third-party key resellers and reverse-proxy services route your prompts through untrusted middleman servers. Private code, proprietary logic, API keys, and sensitive tokens are routinely logged and harvested.
+* **Grey Market Safety & Security Warning (Reseller Proxies & Transfer Stations)**:
+  * **Threat Intelligence & Security Research**:
+    * **[Sysdig Research: LLMjacking & Stolen Credentials](https://sysdig.com/blog/llmjacking-stolen-cloud-credentials-tokencaching/)**: Security analysis of unauthorized LLM proxy transfer stations, stolen cloud API keys, illicit token caching, and carded account abuse.
+    * **[OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)** (**LLM07: System Information Disclosure** & **LLM10: Unchecked Resource Consumption**): Official security vulnerability standards mapping risks of unvetted middleman proxy endpoints and prompt leakage.
+    * **[OpenAI Terms of Use](https://openai.com/policies/terms-of-use)** & **[Anthropic Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms)**: Official provider ToS policies prohibiting API credential resale, account pooling/sharing, and unauthorized commercial redistribution.
+  * **MITM Telemetry & Code Exposure**: Unauthorized third-party key resellers and reverse-proxy services ("transfer stations" / shared key proxies) route your prompts through untrusted middleman servers. Private code, proprietary logic, API keys, and sensitive tokens are routinely logged and harvested.
   * **Account Termination & IP Blacklisting**: Utilizing carded accounts, shared subscription tokens, or unauthorized reseller proxies violates provider Terms of Service (ToS), resulting in immediate account bans, loss of API access, and reputation damage.
   * **Stolen Financials & Carding Rings**: Grey market sellers exploit stolen credit cards to generate API keys. Using these keys exposes developers to legal liability and sudden infrastructure collapse when chargebacks occur.
 
