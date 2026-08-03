@@ -2,7 +2,7 @@
   <img src="./banner.png" alt="Awesome AI Coding on a Budget Banner" width="100%">
 </p>
 
-# Awesome AI Coding on a Budget ðŸš€
+# Awesome AI Coding on a Budget 🚀
 
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/mrtnrocks/awesome-ai-coding-on-a-budget)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -79,8 +79,8 @@ Do not send every request to expensive flagship models. Divide agent operations 
 | Tier | Primary Use Case | Recommended Pareto-Optimal Models | Benchmark & Cost Focus |
 | :--- | :--- | :--- | :--- |
 | **Tier 1: High-Reasoning & Architecture** | Spec creation, system architecture, root-cause diagnosis across large codebases, complex refactoring | Top-tier reasoning & frontier architecture models | DeepSWE / LMSYS Coding top scores; used sparingly for planning and complex fixes. |
-| **Tier 2: Routine Execution & Component Dev** | Feature implementation, test-driven development (TDD), API integration, code review | High-efficiency mid-tier execution & coding models | High Artificial Analysis speed/cost efficiency ($0.05â€“$0.30 / 1M tokens). |
-| **Tier 3: Autocomplete & Background Tasks** | Inline code completion, docstring generation, linter warning fixes, git commit messages | Lightweight open-weights (7Bâ€“14B local) & zero-cost free-tier endpoints | Near-zero or zero API cost; ultra-low latency (<500ms TTFT). |
+| **Tier 2: Routine Execution & Component Dev** | Feature implementation, test-driven development (TDD), API integration, code review | High-efficiency mid-tier execution & coding models | High Artificial Analysis speed/cost efficiency ($0.05–$0.30 / 1M tokens). |
+| **Tier 3: Autocomplete & Background Tasks** | Inline code completion, docstring generation, linter warning fixes, git commit messages | Lightweight open-weights (7B–14B local) & zero-cost free-tier endpoints | Near-zero or zero API cost; ultra-low latency (<500ms TTFT). |
 
 ---
 
@@ -175,7 +175,7 @@ You must optimize tokens in two ways: **Input Compression** (remove git noise, p
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Optimization Target** | **Input** (CLI / Diff logs) | **Input** (Tool outputs / AST) | **Input / Tooling** (Claude Code AST) | **Output** (Terse responses) | **Output** (Minimalist code) | **Output** (Simplified prose) | **Input** (Prompt payload) |
 | **Primary Mechanism** | Terminal output interceptor | AST pruning & local cache | AST-aware tool substitution | System prompt injection | YAGNI decision ruleset | ASD-STE100 vocabulary | Neural model compression |
-| **Token Reduction** | **60% â€“ 90%** (CLI outputs) | **60% â€“ 95%** (Data/AST) | **25% â€“ 55%** (Claude Code tokens) | **60% â€“ 75%** (Output tokens) | **~54%** (Generated code) | **15% â€“ 30%** (Text output) | **40% â€“ 66%** (Input prompt) |
+| **Token Reduction** | **60% – 90%** (CLI outputs) | **60% – 95%** (Data/AST) | **25% – 55%** (Claude Code tokens) | **60% – 75%** (Output tokens) | **~54%** (Generated code) | **15% – 30%** (Text output) | **40% – 66%** (Input prompt) |
 | **Reversibility** | Lossy (Strips noise) | **Reversible** (CCR cache) | Lossless / Structural AST | N/A (Style constraint) | N/A (Code design) | N/A (Prose constraint) | Lossy / Semantic |
 | **Delivery Format** | Rust binary CLI proxy | Local proxy / MCP / SDK | Claude Code Plugin (`WithWoz`) | Agent Skill / Ruleset | Agent Skill / `.cursorrules` | System prompt constraint | Cloud API Middleware / SDK |
 | **Best For** | `git diff`, test suite output | Codebase context & RAG | Claude Code CLI sessions | Daily terminal chat | Feature implementation | Docstrings & explanations | Heavy prompt middleware |
@@ -202,20 +202,20 @@ You must optimize tokens in two ways: **Input Compression** (remove git noise, p
 ### Input vs. Output Savings Breakdown
 
 ```
-                            â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
-                            â”‚    LLM Token Optimization Strategy           â”‚
-                            â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                                   â”‚
-                 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
-                 â–¼                                                                   â–¼
+                            ┌──────────────────────────────────────────────┐
+                            │    LLM Token Optimization Strategy           │
+                            └──────────────────────┬───────────────────────┘
+                                                   │
+                 ┌─────────────────────────────────┴─────────────────────────────────┐
+                 ▼                                                                   ▼
     INPUT CONTEXT COMPRESSION                                          OUTPUT TOKEN MINIMIZATION
   (Saves 60-90% of Input Tokens)                                     (Saves 50-75% of Output Tokens)
- â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�                                 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
- â”‚ â€¢ RTK: CLI & Diff Filtering   â”‚                                 â”‚ â€¢ Caveman: No Conversational  â”‚
- â”‚ â€¢ Headroom: AST & CCR Caching â”‚                                 â”‚   Filler / Terse Responses    â”‚
- â”‚ â€¢ WOZCODE: Claude Code Plugin â”‚                                 â”‚ â€¢ Ponytail: YAGNI-First Code  â”‚
- â”‚ â€¢ TTC: Neural Prompt Pruning  â”‚                                 â”‚ â€¢ SimpleEnglish: ASD-STE100   â”‚
- â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                                 â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+ ┌───────────────────────────────┐                                 ┌───────────────────────────────┐
+ │ • RTK: CLI & Diff Filtering   │                                 │ • Caveman: No Conversational  │
+ │ • Headroom: AST & CCR Caching │                                 │   Filler / Terse Responses    │
+ │ • WOZCODE: Claude Code Plugin │                                 │ • Ponytail: YAGNI-First Code  │
+ │ • TTC: Neural Prompt Pruning  │                                 │ • SimpleEnglish: ASD-STE100   │
+ └───────────────────────────────┘                                 └───────────────────────────────┘
 ```
 
 ---
@@ -248,7 +248,7 @@ Cost-efficient projects use **Model Context Protocol (MCP)** servers, AST indexe
 | **Delivery Format** | C Binary / MCP Server | MCP Server & CLI Skill | Node.js CLI (`npx repomix`) | Built-in CLI (Aider) | Native Library (Py/TS) |
 | **Cost / License** | 100% Free (MIT) | Free Tier / Open-Source | 100% Free (MIT) | 100% Free (Apache 2.0) | 100% Free (Apache 2.0) |
 | **Context Mechanism** | Tree-sitter + Hybrid LSP | Versioned Doc Fetching | Secretlint + AST Pruning | Tree-sitter + PageRank | Disk-vector (lance format) |
-| **Token Reduction** | **Up to 99%** | High (Targeted snippets) | 40% â€“ 60% with `--compress` | **85%+** vs full files | Precision retrieval |
+| **Token Reduction** | **Up to 99%** | High (Targeted snippets) | 40% – 60% with `--compress` | **85%+** vs full files | Precision retrieval |
 | **Primary Focus** | Whole-repo call-graphs | External library docs | Prompt packing for chats | Inline symbol mapping | Custom local RAG |
 
 ---
@@ -268,19 +268,19 @@ Cost-efficient projects use **Model Context Protocol (MCP)** servers, AST indexe
 The Model Context Protocol (MCP) connects AI agent hosts (such as Claude Code, Cursor, Windsurf, or OpenCode) to external context servers:
 
 ```
-                          â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
-                          â”‚   AI Agent Host (Claude Code /   â”‚
-                          â”‚     Cursor / Windsurf / etc.)    â”‚
-                          â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                            â”‚
+                          ┌──────────────────────────────────┐
+                          │   AI Agent Host (Claude Code /   │
+                          │     Cursor / Windsurf / etc.)    │
+                          └─────────────────┬────────────────┘
+                                            │
                                   MCP Protocol (JSON-RPC)
-                                            â”‚
-           â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
-           â–¼                                â–¼                                â–¼
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�          â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�          â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
-â”‚ Codebase Memory MCP â”‚          â”‚    Context7 MCP     â”‚          â”‚ Local Filesystem    â”‚
-â”‚  (C Binary Graph)   â”‚          â”‚ (Upstash Live Docs) â”‚          â”‚  (Read/Write Tools) â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜          â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜          â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                                            │
+           ┌────────────────────────────────┼────────────────────────────────┐
+           ▼                                ▼                                ▼
+┌─────────────────────┐          ┌─────────────────────┐          ┌─────────────────────┐
+│ Codebase Memory MCP │          │    Context7 MCP     │          │ Local Filesystem    │
+│  (C Binary Graph)   │          │ (Upstash Live Docs) │          │  (Read/Write Tools) │
+└─────────────────────┘          └─────────────────────┘          └─────────────────────┘
 ```
 
 ---
@@ -394,7 +394,7 @@ You can run AI coding workflows on local hardware or self-hosted servers. Local 
 | **Category** | Local LLM Server | Open Agent Model Family | Lightweight Agent CLI | AI Design & UI Engine | Inference Backend Engine |
 | **Language / Core** | Go & C++ (llama.cpp) | PyTorch / GGUF Weights | Go | TypeScript & Web UI | Python / C++ CUDA |
 | **Cost / License** | 100% Free (MIT) | Free Open Weights | 100% Free (MIT) | Free Open-Source | 100% Free (Apache 2.0) |
-| **VRAM / Hardware** | 4GB â€“ 48GB VRAM | VRAM Dependent (8B-70B) | Minimal CPU (<20MB RAM) | Light Local Server | GPU VRAM Heavy |
+| **VRAM / Hardware** | 4GB – 48GB VRAM | VRAM Dependent (8B-70B) | Minimal CPU (<20MB RAM) | Light Local Server | GPU VRAM Heavy |
 | **Primary Focus** | Standardized local LLM API | Structured tool & function calling | Sub-second CLI agent runner | Local UI design to code | High-throughput batch server |
 
 ---
@@ -490,15 +490,23 @@ To decrease spend, use provider discounts, startup grants, and regional purchasi
 ### Economic Decision Architecture
 
 ```
-        â”‚    (Zero Security Risk)     â”‚                       â”‚    (EXTREME RISK / HAZARD)  â”‚
-        â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                       â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                       â”‚                                                     â”‚
-       â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�                     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
-       â–¼               â–¼               â–¼                     â–¼               â–¼               â–¼
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
-â”‚  Batch APIs  â”‚â”‚  OSS Grants  â”‚â”‚ OpenTheRank  â”‚     â”‚ MITM Logging â”‚â”‚ Account Bans â”‚â”‚ Stolen Cards â”‚
-â”‚  (50% Off)   â”‚â”‚ ($1kâ€“$150k)  â”‚â”‚ PPP Analysis â”‚     â”‚ Data Breach  â”‚â”‚ TOS Violate  â”‚â”‚ Infrastructureâ”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                               ┌────────────────────────────────────────┐
+                               │   AI Developer Budget Strategy         │
+                               └──────────────────┬─────────────────────┘
+                                                  │
+                       ┌──────────────────────────┴──────────────────────────┐
+                       ▼                                                     ▼
+        ┌─────────────────────────────┐                       ┌─────────────────────────────┐
+        │   LEGITIMATE OPTIMIZATION   │                       │    GREY MARKET RESELLERS    │
+        │    (Zero Security Risk)     │                       │    (EXTREME RISK / HAZARD)  │
+        └──────────────┬──────────────┘                       └──────────────┬──────────────┘
+                       │                                                     │
+       ┌───────────────┼───────────────┐                     ┌───────────────┼───────────────┐
+       ▼               ▼               ▼                     ▼               ▼               ▼
+┌──────────────┐┌──────────────┐┌──────────────┐     ┌──────────────┐┌──────────────┐┌──────────────┐
+│  Batch APIs  ││  OSS Grants  ││ OpenTheRank  │     │ MITM Logging ││ Account Bans ││ Stolen Cards │
+│  (50% Off)   ││ ($1k–$150k)  ││ PPP Analysis │     │ Data Breach  ││ TOS Violate  ││ Infrastructure│
+└──────────────┘└──────────────┘└──────────────┘     └──────────────┘└──────────────┘└──────────────┘
 ```
 
 ---
@@ -508,9 +516,9 @@ To decrease spend, use provider discounts, startup grants, and regional purchasi
 | Resource / Tier | Qualification Criteria | Average Value | Best Applied To |
 | :--- | :--- | :--- | :--- |
 | **Batch API Tier** | Any developer running async jobs (<24h SLA) | 50% Token Discount | Large codebases, batch docs, test generation |
-| **OSS Maintainer Grants** | Open source maintainer with active public repo | $1,000 â€“ $10,000 credits | CI/CD testing, automated PR review bots |
-| **Startup Accelerator Credits** | Early-stage startup (Incorporated, <5 yrs) | $25,000 â€“ $150,000 credits | Scaling multi-tenant AI coding features |
-| **PPP Regional Pricing** | Developer residing in eligible PPP regions | 30% â€“ 60% software discount | Solopreneurs and regional engineering teams |
+| **OSS Maintainer Grants** | Open source maintainer with active public repo | $1,000 – $10,000 credits | CI/CD testing, automated PR review bots |
+| **Startup Accelerator Credits** | Early-stage startup (Incorporated, <5 yrs) | $25,000 – $150,000 credits | Scaling multi-tenant AI coding features |
+| **PPP Regional Pricing** | Developer residing in eligible PPP regions | 30% – 60% software discount | Solopreneurs and regional engineering teams |
 
 ---
 
