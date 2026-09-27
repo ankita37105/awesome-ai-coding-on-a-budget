@@ -4,7 +4,8 @@
 
 # Awesome AI Coding on a Budget 🚀
 
-[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/mrtnrocks/awesome-ai-coding-on-a-budget)
+[![Awesome](https://cdn.rawgit.com/sindresorhus/awes
+ome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/mrtnrocks/awesome-ai-coding-on-a-budget)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/mrtnrocks/awesome-ai-coding-on-a-budget)
 [![Wayfinder Map](https://img.shields.io/badge/Wayfinder-Map%20%231-blueviolet)](https://github.com/mrtnrocks/awesome-ai-coding-on-a-budget/issues/1)
@@ -535,3 +536,10 @@ Contributions are welcome! If you know of high-quality tools, proxies, local run
 ## License
 
 Distributed under the MIT License. See [`LICENSE`](LICENSE) for more information.
+
+---
+
+### Managed hosted routers
+
+* **[APIClaw](https://apiclaw.biz/)**: Flat-rate OpenAI-compatible AI API gateway for Claude, GPT, Kimi, Qwen, DeepSeek, and GLM, with 50 free trial requests and $19-$129/month plans.
+* 
